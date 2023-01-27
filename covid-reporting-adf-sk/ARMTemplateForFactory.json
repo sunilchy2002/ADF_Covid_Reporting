@@ -27,13 +27,17 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
 			"type": "string",
-			"defaultValue": "cloudboxacademy/covid19/main/ecdc_data/hospital_admissions.csv"
+			"defaultValue": "test"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
 			"type": "string",
-			"defaultValue": "hospital_admissions.csv"
+			"defaultValue": "test"
+		},
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL": {
+			"type": "string",
+			"defaultValue": "test"
 		}
 	},
 	"variables": {
@@ -614,40 +618,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tr_ingest_hospital_admission_data')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_ingest_ecdc_data",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"sourceRelativeURL": "[parameters('tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]",
-							"sinkFileName": "[parameters('tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-01-27T17:10:00",
-						"timeZone": "India Standard Time",
-						"schedule": {}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_ingest_ecdc_data')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ds_ecdc_file_list')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -669,6 +639,42 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_ablob_Covid_Reporting_sa')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_ingest_ecdc_data')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_ingest_ecdc_data",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"sourceRelativeURL": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]",
+							"sinkFileName": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]",
+							"sourceBaseURL": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 15,
+						"startTime": "2023-01-27T18:27:00",
+						"endTime": "2023-01-28T12:55:17",
+						"timeZone": "India Standard Time",
+						"schedule": {}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_ingest_ecdc_data')]"
 			]
 		}
 	]

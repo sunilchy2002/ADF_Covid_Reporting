@@ -27,13 +27,17 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
 			"type": "string",
-			"defaultValue": "cloudboxacademy/covid19/main/ecdc_data/hospital_admissions.csv"
+			"defaultValue": "test"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
 			"type": "string",
-			"defaultValue": "hospital_admissions.csv"
+			"defaultValue": "test"
+		},
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL": {
+			"type": "string",
+			"defaultValue": "test"
 		},
 		"containerUri": {
 			"type": "string",
@@ -77,11 +81,14 @@
 					"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
 						"value": "[parameters('CovidReportingFileDeletePostCopy_properties_typeProperties_scope')]"
 					},
-					"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-						"value": "[parameters('tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]"
+					"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+						"value": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]"
 					},
-					"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-						"value": "[parameters('tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
+					"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+						"value": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
+					},
+					"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL": {
+						"value": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL')]"
 					}
 				}
 			},

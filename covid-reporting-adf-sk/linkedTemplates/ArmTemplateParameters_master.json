@@ -20,11 +20,14 @@
 		"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
 			"value": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-			"value": "cloudboxacademy/covid19/main/ecdc_data/hospital_admissions.csv"
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+			"value": "test"
 		},
-		"tr_ingest_hospital_admission_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-			"value": "hospital_admissions.csv"
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+			"value": "test"
+		},
+		"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL": {
+			"value": "test"
 		},
 		"containerUri": {
 			"value": ""
