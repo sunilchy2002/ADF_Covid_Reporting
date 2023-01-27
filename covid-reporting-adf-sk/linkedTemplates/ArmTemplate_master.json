@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "covid-reporting-adf-sk"
+		},
+		"ls_ablob_Covid_Reporting_sa_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ablob_Covid_Reporting_sa'"
+		},
+		"ls_adls_covid_reporting_dl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_covid_reporting_dl'"
+		},
+		"ls_adls_covid_reporting_dl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://covidreportingdlsks.dfs.core.windows.net/"
+		},
+		"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "covid-reporting-adf-sk_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_ablob_Covid_Reporting_sa_connectionString": {
+						"value": "[parameters('ls_ablob_Covid_Reporting_sa_connectionString')]"
+					},
+					"ls_adls_covid_reporting_dl_accountKey": {
+						"value": "[parameters('ls_adls_covid_reporting_dl_accountKey')]"
+					},
+					"ls_adls_covid_reporting_dl_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_covid_reporting_dl_properties_typeProperties_url')]"
+					},
+					"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
+						"value": "[parameters('CovidReportingFileDeletePostCopy_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
