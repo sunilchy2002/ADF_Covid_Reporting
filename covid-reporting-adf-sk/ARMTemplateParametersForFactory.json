@@ -14,14 +14,14 @@
 		"ls_adls_covid_reporting_dl_properties_typeProperties_url": {
 			"value": "https://covidreportingdlsks.dfs.core.windows.net/"
 		},
-		"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
-			"value": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
-		},
 		"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"
 		},
 		"ls_http_opendata_ecdc_europe_eu1_properties_typeProperties_url": {
 			"value": "https://opendata.ecdc.europa.eu"
+		},
+		"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
+			"value": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
 		}
 	}
 }
