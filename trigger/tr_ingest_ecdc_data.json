@@ -8,6 +8,11 @@
 				"pipelineReference": {
 					"referenceName": "pl_ingest_ecdc_data",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"sourceRelativeURL": "test",
+					"sinkFileName": "test",
+					"sourceBaseURL": "test"
 				}
 			}
 		],
