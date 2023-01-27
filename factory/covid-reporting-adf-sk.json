@@ -1,0 +1,14 @@
+{
+	"name": "covid-reporting-adf-sk",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fab0b98f-c61c-4a6d-95c4-0993d26774a0",
+		"tenantId": "0edfa164-4f8a-4259-8b25-183d83157de1"
+	}
+}
