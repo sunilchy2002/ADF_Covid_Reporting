@@ -21,11 +21,7 @@
 		},
 		"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
-		},
-		"ls_http_opendata_ecdc_europe_eu1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://opendata.ecdc.europa.eu"
+			"defaultValue": "@{linkedService().sourceBaseURL}"
 		},
 		"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
 			"type": "string",
@@ -77,9 +73,6 @@
 					},
 					"ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url": {
 						"value": "[parameters('ls_http_opendata_ecdc_europe_eu_properties_typeProperties_url')]"
-					},
-					"ls_http_opendata_ecdc_europe_eu1_properties_typeProperties_url": {
-						"value": "[parameters('ls_http_opendata_ecdc_europe_eu1_properties_typeProperties_url')]"
 					},
 					"CovidReportingFileDeletePostCopy_properties_typeProperties_scope": {
 						"value": "[parameters('CovidReportingFileDeletePostCopy_properties_typeProperties_scope')]"
