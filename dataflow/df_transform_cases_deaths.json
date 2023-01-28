@@ -19,6 +19,9 @@
 				},
 				{
 					"name": "SelectDesiredColumns"
+				},
+				{
+					"name": "ConvertConfirmedAndDeathCases"
 				}
 			],
 			"scriptLines": [
@@ -44,11 +47,21 @@
 				"          indicator,",
 				"          daily_count,",
 				"          source,",
-				"          each(match(name == 'date'),",
-				"               'reported' + ' date' = $$)",
+				"          each(match(name=='date'),",
+				"               'reported'+' date' = $$)",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> SelectDesiredColumns"
+				"     skipDuplicateMapOutputs: false) ~> SelectDesiredColumns",
+				"SelectDesiredColumns pivot(groupBy(country,",
+				"          country_code,",
+				"          population,",
+				"          source,",
+				"          {reported date}),",
+				"     pivotBy(indicator, ['confirmed cases', 'deaths']),",
+				"     count = sum(daily_count),",
+				"     columnNaming: '$V_$N',",
+				"     lateral: true,",
+				"     partitionBy('roundRobin', 2)) ~> ConvertConfirmedAndDeathCases"
 			]
 		}
 	}
