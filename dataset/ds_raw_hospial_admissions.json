@@ -21,31 +21,31 @@
 		},
 		"schema": [
 			{
-				"name": "Austria",
+				"name": "country",
 				"type": "String"
 			},
 			{
-				"name": "Daily hospital occupancy",
+				"name": "indicator",
 				"type": "String"
 			},
 			{
-				"name": "2020-04-02",
+				"name": "date",
 				"type": "String"
 			},
 			{
-				"name": "2020-W14",
+				"name": "year_week",
 				"type": "String"
 			},
 			{
-				"name": "1057",
+				"name": "value",
 				"type": "String"
 			},
 			{
-				"name": "Surveillance",
+				"name": "source",
 				"type": "String"
 			},
 			{
-				"name": "https://www.sozialministerium.at/Informationen-zum-Coronavirus/Neuartiges-Coronavirus-(2019-nCov).html",
+				"name": "url",
 				"type": "String"
 			}
 		]
