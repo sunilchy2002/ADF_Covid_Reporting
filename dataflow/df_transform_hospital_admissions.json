@@ -26,6 +26,9 @@
 				},
 				{
 					"name": "Lookup23DigitAndPopulation"
+				},
+				{
+					"name": "SelectRequiredFields"
 				}
 			],
 			"scriptLines": [
@@ -64,7 +67,21 @@
 				"SelectAllExceptURL, CountryLookup lookup(SelectAllExceptURL@country == CountryLookup@country,",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> Lookup23DigitAndPopulation"
+				"     broadcast: 'auto')~> Lookup23DigitAndPopulation",
+				"Lookup23DigitAndPopulation select(mapColumn(",
+				"          country = SelectAllExceptURL@country,",
+				"          indicator,",
+				"          reported_date,",
+				"          reported_year_week,",
+				"          value,",
+				"          source,",
+				"          country = CountryLookup@country,",
+				"          country_code_2_digit,",
+				"          country_code_3_digit,",
+				"          population",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectRequiredFields"
 			]
 		}
 	}
