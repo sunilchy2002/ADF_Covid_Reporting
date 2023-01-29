@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "SelectAllExceptURL"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          country as string,",
@@ -26,7 +30,17 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> HospitalAdmisssions"
+				"     ignoreNoFilesFound: false) ~> HospitalAdmisssions",
+				"HospitalAdmisssions select(mapColumn(",
+				"          country,",
+				"          indicator,",
+				"          reported_date = date,",
+				"          reported_year_week = year_week,",
+				"          value,",
+				"          source",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectAllExceptURL"
 			]
 		}
 	}
