@@ -20,7 +20,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "ecdc/hospital_admission_weekly",
+							"wildcardFolderPath": "ecdc/hospital_admission_daily",
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
@@ -145,7 +145,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_processed_hospital_admission_weekly",
+						"referenceName": "ds_processed_hospital_admissions_daily",
 						"type": "DatasetReference"
 					}
 				],
