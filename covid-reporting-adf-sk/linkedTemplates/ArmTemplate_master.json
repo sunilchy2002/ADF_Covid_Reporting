@@ -47,6 +47,10 @@
 			"type": "string",
 			"defaultValue": "test"
 		},
+		"tr_population_data_arrived_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/bd6ad0d9-febb-4c7a-a548-57800a6d516c/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/covidreportingsasks"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -121,6 +125,9 @@
 					},
 					"tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL": {
 						"value": "[parameters('tr_ingest_ecdc_data_properties_pl_ingest_ecdc_data_parameters_sourceBaseURL')]"
+					},
+					"tr_population_data_arrived_properties_typeProperties_scope": {
+						"value": "[parameters('tr_population_data_arrived_properties_typeProperties_scope')]"
 					}
 				}
 			},
