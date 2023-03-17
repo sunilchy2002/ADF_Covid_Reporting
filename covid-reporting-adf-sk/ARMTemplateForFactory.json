@@ -203,6 +203,9 @@
 						"type": "string"
 					}
 				},
+				"folder": {
+					"name": "Ingest"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -395,6 +398,9 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"folder": {
+					"name": "Ingest"
+				},
 				"annotations": [],
 				"lastPublishTime": "2023-01-27T04:23:28Z"
 			},
@@ -445,6 +451,9 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"folder": {
+					"name": "Process"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -481,6 +490,9 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Process"
 				},
 				"annotations": []
 			},
@@ -531,6 +543,9 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Process"
 				},
 				"annotations": []
 			},
@@ -705,6 +720,9 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"folder": {
+					"name": "Sqlize"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -878,6 +896,9 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Sqlize"
 				},
 				"annotations": []
 			},
@@ -1970,6 +1991,62 @@
 				"[concat(variables('factoryId'), '/datasets/ds_Dim_Date')]",
 				"[concat(variables('factoryId'), '/datasets/ds_processed_hospital_admission_weekly')]",
 				"[concat(variables('factoryId'), '/datasets/ds_processed_hospital_admissions_daily')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_Execute_Population_Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Ingest Population Data",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_ingest_population_data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Process Population Data",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Ingest Population Data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_process_population_data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "Execute"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_ingest_population_data')]",
+				"[concat(variables('factoryId'), '/pipelines/pl_process_population_data')]"
 			]
 		}
 	]

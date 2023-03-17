@@ -158,6 +158,9 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"folder": {
+					"name": "Process"
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -870,6 +873,9 @@
 					"sourceBaseURL": {
 						"type": "string"
 					}
+				},
+				"folder": {
+					"name": "Ingest"
 				},
 				"annotations": []
 			},
